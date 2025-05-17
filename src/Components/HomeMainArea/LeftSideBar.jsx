@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
 
-const LeftNavBar = () => {
+const LeftSideBar = () => {
 
     const [categories, setCategories] = useState([]);
 
@@ -24,7 +24,7 @@ const LeftNavBar = () => {
                     {
                         categories.map((category) =>(
                        <li key={category.category_id}>
-                          <a href="#" className="flex items-center p-2 text-[#9F9F9F] hover:text-gray-900 rounded-sm hover:bg-gray-100 hover:font-semibold">
+                          <a href="#" className="flex items-center p-2 text-[#9F9F9F] hover:text-gray-900 rounded-md hover:bg-gray-100 hover:font-semibold">
                            <span className="ms-3">{category.category_name}</span>
                           </a>
                         </li>
@@ -37,4 +37,4 @@ const LeftNavBar = () => {
     );
 };
 
-export default LeftNavBar;
+export default LeftSideBar;
