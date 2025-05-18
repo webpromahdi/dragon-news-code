@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react';
-import { FaGoogle, FaTwitter, FaFacebookF } from 'react-icons/fa';
+import { FaGoogle, FaTwitter, FaFacebookF, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const SignUpPage = () => {
 
   const [errorMessage, setErrorMessage] = useState(''); 
+  const [showPassword, setShowPassword] = useState(false);
   const {createNewUser, setUser} = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -15,16 +16,16 @@ const SignUpPage = () => {
         const name = form.name.value;
         const userName = form.userName.value;
         const email = form.email.value;
-        const passowrd = form.passowrd.value;
+        const password = form.password.value;
         setErrorMessage('');
 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        if(!passwordRegex.test(passowrd)){
+        if(!passwordRegex.test(password)){
           setErrorMessage("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (e.g., !@#$%^&*)");
           return;
         }
 
-        createNewUser(email, passowrd)
+        createNewUser(email, password)
         .then((userCredential) =>{
             const user = userCredential.user;
             setUser(user);
@@ -81,12 +82,22 @@ const SignUpPage = () => {
                 placeholder="Email address"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
               />
-              <input
-                type="password"
-                name='passowrd'
-                placeholder="Password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-              />
+              <div className='relative'>
+                <input
+                  type={showPassword? "text" : "password"}
+                  name='password'
+                  placeholder="Password"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                />
+                <button 
+                onClick={() => setShowPassword(!showPassword)}
+                className='absolute right-2 top-3'>
+                  {
+                    showPassword? <FaEyeSlash /> : <FaEye />
+
+                  }                 
+                </button>
+              </div>
 
               <div className="flex items-start text-sm text-gray-600">
                 <input type="checkbox" className="mr-2 mt-1" />
@@ -97,7 +108,7 @@ const SignUpPage = () => {
                 </p>
               </div>
 
-              <button className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition font-semibold">
+              <button type='button' className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition font-semibold">
                 Create Account
               </button>
             </form>

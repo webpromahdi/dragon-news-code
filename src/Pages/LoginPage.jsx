@@ -32,7 +32,7 @@ const LoginPage = () => {
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">Sign In</h2>
         <p className="text-sm text-gray-500 mb-6">Welcome back. We've missed you.</p>
-
+        
         <div className="flex space-x-4 mb-6">
           <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition">
             <FaGoogle />
