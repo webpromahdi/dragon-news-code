@@ -9,7 +9,7 @@ const TopHeader = () => {
             <div className="container flex flex-col justify-center items-center gap-y-3">
                 {/* logo */}
                 <div>
-                    <img className='w-[200px] h-[30px] sm:w-[400px] sm:h-[60px]' src={logo} alt="logo" />
+                    <Link to="/"><img className='w-[200px] h-[30px] sm:w-[400px] sm:h-[60px]' src={logo} alt="logo" /></Link>
                 </div>
                 {/* text */}
                 <div className='flex flex-col items-center gap-y-3'>

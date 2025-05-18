@@ -1,7 +1,32 @@
+import { useContext, useState } from 'react';
 import { FaGoogle, FaTwitter, FaFacebookF } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const LoginPage = () => {
+  const [errorMessage, setErrorMessage] = useState(''); 
+  const {signInUser, setUser} = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogin = (e) =>{
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    setErrorMessage('');
+
+    signInUser(email, password)
+    .then(res =>{
+      const user = res.user;
+      setUser(user);
+      navigate(location?.state ? location.state : "/");
+    })
+    .catch(err =>{
+      setErrorMessage(err.message);
+    })
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-md">
@@ -27,14 +52,16 @@ const LoginPage = () => {
           <hr className="flex-grow border-gray-300" />
         </div>
 
-        <form className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
           <input
             type="email"
+            name="email"
             placeholder="Email address"
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
           <input
             type="password"
+            name="password"
             placeholder="Password"
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
@@ -50,6 +77,10 @@ const LoginPage = () => {
             Sign In
           </button>
         </form>
+
+        {
+          errorMessage && <p className='my-2 text-red-500'>{errorMessage}</p>
+        }
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Don’t have an account?

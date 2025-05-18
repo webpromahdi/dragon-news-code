@@ -2,6 +2,7 @@
 
 import { FaEye, FaStar } from "react-icons/fa";
 import { FiShare2 } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ singleNews }) => {
   const {
@@ -41,9 +42,9 @@ const NewsCard = ({ singleNews }) => {
         <p className="text-sm text-[#706F6F] leading-6">
           {details.slice(0, 250)}...
           <br />
-          <span className="text-[#FF8C47] font-medium cursor-pointer">
+          <Link to={`/news/${singleNews._id}`} className="text-[#FF8C47] font-medium cursor-pointer">
             Read More
-          </span>
+          </Link>
         </p>
         <div className="border border-gray-2"></div>
         <div className="flex items-center justify-between pt-2">
