@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
+import { NavLink } from "react-router-dom";
 
 const LeftSideBar = () => {
 
@@ -18,15 +19,15 @@ const LeftSideBar = () => {
                <HiMenuAlt2 className='w-6 h-6' />
             </button>
             <h2 className="font-semibold">All Caterogy</h2>        
-            <aside className="fixed w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
+            <aside className="w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
                <div className="h-full px-3 py-4 overflow-y-auto">
                   <ul className="space-y-2 font-medium">
                     {
                         categories.map((category) =>(
                        <li key={category.category_id}>
-                          <a href="#" className="flex items-center p-2 text-[#9F9F9F] hover:text-gray-900 rounded-md hover:bg-gray-100 hover:font-semibold">
+                          <NavLink to={`/category/${category.category_id}`} className="flex items-center p-2 text-[#9F9F9F] hover:text-gray-900 rounded-md hover:bg-gray-100 hover:font-semibold">
                            <span className="ms-3">{category.category_name}</span>
-                          </a>
+                          </NavLink>
                         </li>
                         ))
                     }

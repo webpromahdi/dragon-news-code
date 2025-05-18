@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a.active{
+    color: black;
+    font-weight: 600;
+    background-color: #E7E7E7;
+}

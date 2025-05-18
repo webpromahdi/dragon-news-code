@@ -10,7 +10,7 @@ const RightSideBar = () => {
         <div className='flex flex-col gap-y-10'>
             {/* login section */}
             <div>
-                <h2 className="font-semibold">Login With</h2> 
+                <h2 className="font-semibold mb-4">Login With</h2> 
                 <div className='mt-2 flex flex-col gap-2'>
                     <button className='w-full border-black hover:border-primary border rounded-md inline-flex items-center justify-center py-2 text-center text-base font-medium hover:text-primary hover:bg-gray-100'>
                       <span className='mr-[10px]'>
