@@ -5,6 +5,9 @@ import {
 import MainLayout from "../Layouts/MainLayout";
 import ErrorPage from "../Pages/ErrorPage";
 import CategoryNewsContent from "../Pages/CategoryNewsContent";
+import SignUpPage from "../Pages/SignUpPage";
+import AuthLayout from "../Layouts/AuthLayout";
+import LoginPage from "../Pages/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,20 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: "/auth",
+    element: <AuthLayout></AuthLayout>,
+    children:[
+      {
+        path:"/auth/register",
+        element: <SignUpPage></SignUpPage>
+      },
+      {
+        path:"/auth/login",
+        element: <LoginPage></LoginPage>
+      }
+    ]
+  }
 ]);
 
 export default router;
